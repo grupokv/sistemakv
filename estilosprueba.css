@@ -1,0 +1,72 @@
+	body{
+		font-family: Arial;
+		margin: 0;
+	}
+
+	/*ESTILOS GENERALES*/
+
+	nav ul{
+		list-style: none;
+		padding: 0;
+	}	
+
+	nav li{
+		line-height: 2rem;
+		position: relative;
+	}
+
+	nav li ul{
+		position: absolute;
+	}
+
+	nav a{
+		color: #ddd;
+		display: block;
+		padding: 0 2rem;
+		text-decoration: none;
+		transition: .4s;
+	}
+
+	nav a:hover{
+		background: rgba(0,0,0,0.5);
+	}
+
+	nav li ul{
+		display: none;
+	}
+
+	nav li:hover > ul{
+		display: block;
+	}
+
+
+	/*PRIMER NIVEL*/
+
+	nav > ul{
+		background: #333;
+		display: table;
+		width: 100%;
+	}
+
+	nav > ul > li{
+		float: left;
+	}
+
+	/*SEGUNDO NIVEL*/
+
+	 nav li li{
+	 	background: #222;
+	 	width: 200px;
+	 	line-height: 35px;
+	 }
+
+	 nav > ul > li > ul{
+	 	top: 100%;
+	 }
+
+	/*TERCER NIVEL*/
+
+	nav ul ul ul{
+		left: 100%;
+		top: 0;
+	}
