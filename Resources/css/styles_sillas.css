@@ -1,0 +1,196 @@
+ 
+ #background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: relative; 
+	 margin-left: auto; 
+	 margin-right: auto; 
+	 width: 100%;
+	 height: auto;
+	 z-index:0;
+	 max-width: 800px;
+	} 
+
+ #layer_1 
+{
+	 position: absolute;
+	 right: 5%;
+	 width: 50%;
+	 height: auto;
+	 z-index:1;
+} 
+
+ #DISPONIBLE 
+{ 
+	 float: left;
+	 position: relative; 
+	 width: 30%;
+	 height: auto;
+	 z-index:3;
+	 margin-top: 3%;
+} 
+
+ #OCUPADA 
+{ 
+	 float: left;
+	 position: relative; 
+	 width: 30%;
+	 height: auto;
+	 z-index:3;
+	 margin-top: 3%;
+} 
+
+ #DEAISLAMIENTO 
+{ 
+	 float: left;
+	 position: relative; 
+	 width: 30%;
+	 height: auto;
+	 z-index:3;
+	 margin-top: 3%;
+} 
+
+ #layer_1_0 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 margin-left: 2%;
+	 height: auto;
+	 z-index:6;
+	 margin-top: 2%;
+} 
+
+ #layer_2 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 height: auto;
+	 z-index:6;
+	 margin-top: 2%;
+} 
+
+ #layer_3 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 margin-left: 9%;
+	 height: auto;
+	 z-index:6;
+	 margin-top: 2%;
+} 
+
+ #layer_4 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 height: auto;
+	 z-index:6;
+	 margin-top: 2%;
+	 margin-right: 2%;
+} 
+
+ #letra 
+{  
+	 float: right;
+	 margin-right: 5%;
+	 position: relative;
+	 width: 100%; 
+	 max-width: 50px;
+	 height: 50px;
+	 z-index:10;
+	 margin-top: 2%;
+} 
+@media (max-width: 400px) {
+  #letra 
+{  
+	 float: right;
+	 margin-right: 1%;
+	 position: relative;
+	 width: 100%; 
+	 max-width: 50px;
+	 height: 20px;
+	 z-index:10;
+	 margin-top: 2%;
+} 
+}
+
+ #fila1 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 height: auto;
+	 z-index:6;
+	 margin-bottom: 1%;
+	 margin-right: 4%;
+} 
+
+ #fila2 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 margin-left: 9%;
+	 height: auto;
+	 z-index:6;
+	 margin-bottom: 1%;
+} 
+
+#fila3 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 height: auto;
+	 z-index:6;
+	 margin-bottom: 1%;
+} 
+
+#fila4 
+{ 
+	 float: right; 
+	 position: relative; 
+	 width: 10%;
+	 margin-left: 1%;
+	 height: auto;
+	 z-index:6;
+	 margin-bottom: 1%;
+} 
+
+ #layer_21 
+{ 
+	 float: left;
+	 position: relative; 
+	 width: 8%;
+	 height: auto;
+	 z-index:21;
+	 margin-right: 2%;
+	 margin-top: 2%;
+} 
+
+ #layer_22 
+{ 
+	 float: left;
+	 position: relative; 
+	 width: 8%;
+	 height: auto;
+	 z-index:21;
+	 margin-right: 2%;
+	 margin-top: 2%;
+} 
+
+ #layer_23 
+{ 
+	 float: left;
+	 position: relative; 
+	 width: 8%;
+	 height: auto;
+	 z-index:21;
+	 margin-right: 2%;
+	 margin-top: 2%;
+}

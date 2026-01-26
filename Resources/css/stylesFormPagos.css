@@ -1,0 +1,156 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+.content{
+	margin-top: 25px;
+	width: 90%;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.header_pagos{
+	background: #1b2d3b;
+	width: 100%;
+	height: 110px;
+	border-radius: 3px 3px 0 0;
+}
+.titulo_pagos{
+	background: #4c81a8;
+	width: 100%;
+	height: 15px;
+	margin-bottom:  10px;
+}
+
+#informacion_usuario{
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: auto;
+	border: 3px solid #f2f2f2;
+	margin-left: 30px;
+}
+
+.header_form_usu{
+	width: 100%;
+	height: 50px;
+	background: #fcfcfc;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: #a3a3a3;
+	border-bottom: 2px solid #4c81a8;
+}
+
+.header_form_serv{
+	width: 100%;
+	height: 50px;
+	background: #fcfcfc;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: #a3a3a3;
+	border-bottom: 2px solid #4c81a8;
+}
+
+.title_usuarios{
+	color: #4c81a8;
+	font-size: 1rem;
+	line-height: 2em;
+}
+
+.fa-user-circle-o{
+	font-size: 2.1rem;
+	color: #f9b434;
+}
+
+
+.fa-credit-card{
+	font-size: 1.9rem;
+	color: #f9b434;
+}
+
+#producto_pagar{
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 410px;
+	border: 3px solid #f2f2f2;
+	margin-right: 30px;
+}
+
+#boton_pago{
+	background: #1b2d3b;
+	border-radius: 5px;
+	color: #ffffff;
+}
+
+#boton_cancelar{
+	background: #b31d1d;
+	border-radius: 5px;
+	color: #ffffff;
+}
+
+#boton_pago:hover{
+	background: #375a75;
+}
+
+#boton_cancelar:hover{
+	background: #ba0000;
+}
+
+label{
+	font-size: .9rem !important;
+}
+
+input{
+	/*text-transform: capitalize !important;*/
+	border-style: dashed !important;
+}
+
+select{
+	/*text-transform: capitalize !important;*/
+	border-style: dashed !important;
+}
+
+p{
+	font-size: .9rem !important;
+}
+
+cite{
+	font-size: .8rem !important;
+}
+
+/**/
+
+@media(max-width: 768px){
+	.content{
+		width: 100%;
+	}
+
+	#barraInferiorTitulo{
+		width:40% !important;
+	}
+	.main{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	#producto_pagar{
+		padding: 0px;
+		margin: 0px;
+		height: auto;
+	}
+
+	#boton_cancelar{
+		width: 100% !important;
+	}
+
+	.botones{
+		width: 100% !important;
+		margin-bottom: 5px;
+	}
+
+	.main-boton{
+		margin-left: 2px;
+	}
+}

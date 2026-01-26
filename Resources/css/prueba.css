@@ -1,0 +1,218 @@
+body{
+margin: 0;
+padding: 0;
+background-color: #ffffff;
+}
+
+/* ESTILOS GENERALES */
+.header{
+  background-color: #1b2d3b;
+  height: 20px;
+  width: 100%;
+  margin-bottom: 1px;
+}
+
+#btn-menu{
+	display: none;
+}
+
+#abrir-menu{
+	display: none;
+}
+
+.logo{
+	/*margin-top: 10px;*/
+	font-size: 1.2em;
+
+	cursor: pointer;
+}
+#k{
+	color: #fed189  !important;
+}
+
+#v{
+	color: #00a0df !important;
+}
+
+nav a span{
+	margin-left: 10px;
+}
+
+
+nav ul li a:hover  span {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transition-duration: .5s;
+    font-size: 1.2em;
+}
+nav ul{
+	list-style: none;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+}
+
+nav a:link{
+	text-decoration: none;
+}
+
+nav  a{
+	color: #fff;
+	display: block;
+	padding: 0 2em;
+	transition-duration: 0.5s;
+  /*margin-bottom: 6px;*/
+}
+
+nav ul > li:hover{
+	border-left: 9px solid #00a0df !important;
+	transition-duration: .5s;
+  width: 170px;
+}
+
+nav li{
+	line-height: 2rem;
+	position: relative;
+  z-index: 99999;
+}
+
+nav li ul{
+    position: absolute;
+}
+
+nav li ul{
+	display: none;
+}
+
+nav li:hover > ul{
+	display: block;
+}
+
+/*CONTENIDO*/
+
+
+.usuario{
+  font-size: 1.3em;
+}
+
+.perfil{
+  width: 230px;
+}
+
+.perfil:hover{
+  background-color: #ddd;
+}
+
+/* PRIMER NIVEL */
+
+nav> ul{
+	width: 100%;
+	display: table;
+	background-color: #1b2d3b ;
+}
+
+nav > ul > li{
+  float: left;
+}
+
+
+/* SEGUNDO NIVEL */
+nav li li {
+	background-color: #1b2d3b;
+	width: 170px;
+  height: 6vh;
+	}
+
+nav > ul > li > ul{
+	top: 100%;
+}
+
+
+
+/* TERCER NIVEL */
+
+nav ul ul ul{
+	left: 100%;	
+	top: 0;
+}
+
+
+@media (max-width: 768px){
+
+    #abrir-menu{
+	    display: none;
+	    transition-duration: .8s;
+    }
+
+    #abrir-menu:checked ~ nav> ul{
+	    display: block;
+    }
+
+    #abrir-menu:checked ~ #btn-menu{
+	    transform: rotate(180deg);
+        transition-duration: .8s;
+    }
+
+    .contenido{
+	    width: 100%;
+	    height: 100vh;
+	    margin: 0;
+	    padding: 0;
+        transition-duration: .5s;
+    }
+
+    #btn-menu{
+        transition-duration: .5s;
+	    font-size: 2em;
+	    cursor: pointer;
+	    display: block;
+	    display: flex;
+	    justify-content: center;
+	    padding: 10px;
+    }
+
+    .logo{
+        margin-top: 20px;
+    }
+
+    .header{
+        height: 50px;
+    }
+
+    /*  PRIMER NIVEL */
+        nav >ul{
+           display: none;
+           transition-duration: .3s;
+           width: 100%; 
+        	}
+
+
+    /* SEGUNDO NIVEL */
+        nav  ul ul li > a{
+           margin-left: 10px;
+        }
+
+        nav  ul  li{
+    	    width: 100%;
+        }
+
+	    nav > ul  ul{
+		    position:sticky;
+        }
+
+
+    /* TERCER NIVEL */
+        nav ul ul li> ul{
+           position: sticky;
+        }
+
+        nav  ul ul  ul li > a{
+           margin-left: 20px;
+        }
+
+    /* CUARTO NIVEL */
+        nav  ul ul  ul ul li > a{
+           margin-left: 40px;
+        }
+}

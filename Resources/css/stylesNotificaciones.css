@@ -1,0 +1,184 @@
+        #banner{
+            margin-top: 20px;
+            width: 300px;
+            height: 40px;
+            background-color: #1b2d3b; 
+            margin-left: -250px;
+            transition-duration: 1s;
+            border-radius: 5px;
+            position: fixed;
+            z-index: 1;
+        }
+
+        .fa-bell{
+          color: #f4e511;
+          line-height:41px;
+          font-size:22px;
+          display: flex;
+          justify-content: flex-end;
+          margin-right: 17px;
+        }
+
+        #notifications{
+          width: 250px;
+          height: 360px; 
+          margin-left: -250px;
+          background-color: #383838  !important;
+          transition-duration: 10s;
+          list-style: none;
+          color: #fff;
+          overflow: scroll;
+          padding: 0;
+        }
+
+        ul .docs{
+          padding: 11px;
+          margin: 7px;
+          font-size: 0.8rem;
+          border-bottom:4px solid #2d2d2d;
+        }
+
+        ul .docs .redireccion{
+          text-decoration: none;
+          color: #fff;
+          list-style: none;
+        }
+
+        #notifications > li:hover{
+            border-left: 15px solid #2d2d2d;
+            transition-duration: .3s;
+        }
+
+       
+
+        .num{
+          position: fixed;
+          background-color: #e20d0d;
+         border: 1.4px solid #fff;
+          color: #fff;
+          padding: 2px;
+          border-radius: 50%;
+          font-size: .6rem;
+          left: 23px;
+          top: 77px;
+          transition-duration: 1s;
+        }
+
+  .titulo{
+      position: absolute;
+      color: #fff;
+      font-size: 1.1rem;
+      margin-left: 30px;
+      margin-top: 5px;
+  }
+
+  .definicion{
+    display: none;
+  }
+
+  .redireccion-notificaciones{
+    display: none;
+  }
+
+  @media (max-width: 570px) {
+    .campana-notificaciones{
+      display: none;
+    }
+
+    .titulo{
+      display: none;
+    }
+
+    .carta-notificaciones{
+      display: none;
+    }
+
+    .cards-nv{
+      display: block;
+    }
+  }
+/*
+  @media (max-width: 570px) {
+
+      .campana-notificaciones{
+        font-size: 2.8rem;
+        position: sticky;
+        color: #1b2d3b;
+        margin-top: 18px;
+        justify-content: center;
+      }
+
+      .definicion{
+        margin-top: 42px;
+        display: block; 
+      }
+
+      .definicion:before{
+          content: "Documentación vencida y proxima a vencer"
+      }
+
+      .redireccion-notificaciones{
+         position: relative;
+         top: -17px;
+         display: block;
+         width: 100%;
+         text-align: center;
+         cursor: pointer;
+      }
+
+      .redireccion-notificaciones:before{
+          content: "Consultar";
+      }
+
+
+      .titulo{
+          width: 100%;
+          text-align: center;
+          color: red;
+          content: "Vencidos";
+          font-size: 1.4rem;
+          padding: 0;
+          margin: 0;
+          position: absolute;
+          top: 60px;
+      }
+
+      #notifications{
+        display: none;
+      }
+
+      .num{
+        display: none;
+      }
+
+      .carta-notificaciones{
+          display: flex;
+          width: 97%;
+          height: 190px;
+          background-color: #e9ecef;
+          margin-left: 8px;
+      }
+  
+  }*/
+
+  @media (min-width: 571px){
+
+      .cards-nv{
+        display: none;
+      }
+
+      #banner:hover{
+        margin-left: -2px;
+        transition-duration: 1.7s;
+      }
+
+      #banner:hover .num{
+        left: 271px;
+        transition-duration: 1.7s;
+      }
+
+      #banner:hover #notifications{
+        margin-left: 0;
+        transition-duration: 0.07s;
+      }
+  }

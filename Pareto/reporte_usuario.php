@@ -1,0 +1,276 @@
+<?php
+session_start();
+if (($_SESSION['user'] == '')or($_SESSION['pass'] == '')){
+	echo ("<SCRIPT LANGUAGE='JavaScript'>
+	window.location.href='index.php';
+	</SCRIPT>");
+}
+require('bd/datos.php');
+$querys = new consultas;
+$fecha = date('Y-m-d');
+
+if ($_SESSION['perfil'] == 1){
+$usuarios = $querys->usuarios();
+} else {
+$usuarios = $querys->usuariosarea($_SESSION['area']);
+}	
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+<?php include('head.php');?>
+<script type="text/javascript">
+function campos(valor){
+	if(valor == 1){
+		var usuario = document.getElementById('usuario').value;
+		var parametros = {
+                "usuario" : usuario
+        };
+		$.ajax({
+                data:  parametros,
+                url:   'semanas_usuario.php',
+                type:  'post',
+                beforeSend: function () {
+                        $("#semana").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+					//alert(response);
+                        $("#semana").html(response);
+                }
+        });
+		document.getElementById('semanal').style.display='block';
+		document.getElementById('mensual').style.display = 'none';
+		document.getElementById('anual').style.display = 'none';
+	}
+	if(valor == 2){
+		var usuario = document.getElementById('usuario').value;
+		var parametros = {
+                "usuario" : usuario
+        };
+		$.ajax({
+                data:  parametros,
+                url:   'meses_usuario.php',
+                type:  'post',
+                beforeSend: function () {
+                        $("#mes").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+					//alert(response);
+                        $("#mes").html(response);
+                }
+        });
+		document.getElementById('semanal').style.display='none';
+		document.getElementById('mensual').style.display = 'blocK';
+		document.getElementById('anual').style.display = 'none';
+	}
+	if(valor == 3){
+		var usuario = document.getElementById('usuario').value;
+		var parametros = {
+                "usuario" : usuario
+        };
+		$.ajax({
+                data:  parametros,
+                url:   'anno_usuario.php',
+                type:  'post',
+                beforeSend: function () {
+                        $("#anno").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+					//alert(response);
+                        $("#anno").html(response);
+                }
+        });
+		document.getElementById('semanal').style.display='none';
+		document.getElementById('mensual').style.display = 'none';
+		document.getElementById('anual').style.display = 'block';
+	}
+}	
+</script>
+<body>
+  <!-- container section start -->
+  <section id="container" class="">
+
+	<?php include('header.php');?>
+
+    <?php include('menu.php');?>
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <!--overview start-->
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-icon_document_alt"></i> Reporte Por Usuario</h3>
+           </div>
+        </div>
+
+        <!-- project team & activity start -->
+        <div class="row">
+          <div class="col-md-12 portlets">
+            <!-- Widget -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left"></div>
+                <div class="clearfix"></div>
+              </div>
+
+			  <div class="panel-body">
+                <div class="form">
+                  <form class="form-validate form-horizontal " id="register_form" method="post" action="grafica_usuario.php">
+					<div class="form-group ">
+                      <label for="usuario" class="control-label col-lg-2">Usuario <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <select class=" form-control" id="usuario" name="usuario" required >
+							<?php foreach ($usuarios as $usu){?>
+							<option value="<?php echo $usu['id'];?>"><?php echo $usu['nombre'];?></option>
+							<?php } ?>
+						</select>
+                      </div>
+                    </div>
+				    <div class="form-group ">
+                      <label for="tipo" class="control-label col-lg-2">Tipo Reporte <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <select class=" form-control" id="tiporeporte" name="tiporeporte" required onchange="campos(this.value)" >
+							<option value="" selected="selected" >Seleccione una opción</option>
+							<option value="1">SEMANAL</option>
+							<option value="2">MENSUAL</option>
+							<option value="3">ANUAL</option>
+						</select>
+                      </div>
+                    </div>
+					
+					<div class="form-group " id="semanal" style="display:none">
+                      <label for="tipo" class="control-label col-lg-2">Semana <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <select class=" form-control" id="semana" name="semana" >
+						</select>
+                      </div>
+                    </div>
+					
+					<div class="form-group " id="mensual" style="display:none">
+                      <label for="tipo" class="control-label col-lg-2">Mes  <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <select class=" form-control" id="mes" name="mes" >
+						</select>
+                      </div>
+                    </div>
+					
+					<div class="form-group " id="anual" style="display:none">
+                      <label for="tipo" class="control-label col-lg-2">Año  <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <select class=" form-control" id="anno" name="anno" >
+						</select>
+                      </div>
+                    </div>
+					
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button class="btn btn-primary" type="submit">Consultar</button>
+                        <button class="btn btn-default" type="button" onclick="window.history.go(-1); return false;">Cancelar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- project team & activity end -->
+
+      </section>
+    </section>
+    <!--main content end-->
+  </section>
+  <!-- container section start -->
+
+  <!-- javascripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui-1.10.4.min.js"></script>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+  <!-- bootstrap -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- nice scroll -->
+  <script src="js/jquery.scrollTo.min.js"></script>
+  <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!-- charts scripts -->
+  <script src="assets/jquery-knob/js/jquery.knob.js"></script>
+  <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+  <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+  <script src="js/owl.carousel.js"></script>
+  <!-- jQuery full calendar -->
+  <<script src="js/fullcalendar.min.js"></script>
+    <!-- Full Google Calendar - Calendar -->
+    <script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <!--script for this page only-->
+    <script src="js/calendar-custom.js"></script>
+    <script src="js/jquery.rateit.min.js"></script>
+    <!-- custom select -->
+    <script src="js/jquery.customSelect.min.js"></script>
+    <script src="assets/chart-master/Chart.js"></script>
+	
+    <!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+    <script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="js/xcharts.min.js"></script>
+    <script src="js/jquery.autosize.min.js"></script>
+    <script src="js/jquery.placeholder.min.js"></script>
+    <script src="js/gdp-data.js"></script>
+    <script src="js/morris.min.js"></script>
+    <script src="js/sparklines.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script>
+      //knob
+      $(function() {
+        $(".knob").knob({
+          'draw': function() {
+            $(this.i).val(this.cv + '%')
+          }
+        })
+      });
+
+      //carousel
+      $(document).ready(function() {
+        $("#owl-slider").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true
+
+        });
+      });
+
+      //custom select box
+
+      $(function() {
+        $('select.styled').customSelect();
+      });
+
+      /* ---------- Map ---------- */
+      $(function() {
+        $('#map').vectorMap({
+          map: 'world_mill_en',
+          series: {
+            regions: [{
+              values: gdpData,
+              scale: ['#000', '#000'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
+          backgroundColor: '#eef3f7',
+          onLabelShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+          }
+        });
+      });
+    </script>
+</body>
+
+</html>

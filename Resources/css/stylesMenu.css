@@ -1,0 +1,211 @@
+body{
+margin: 0;
+padding: 0;
+background-color: #ffffff;
+}
+
+/* ESTILOS GENERALES */
+.header{
+  background-color: #1b2d3b;
+  height: 20px;
+  width: 100%;
+  margin-bottom: 1px;
+}
+
+#btn-menu{
+	display: none;
+}
+
+#abrir-menu{
+	display: none;
+}
+
+.logo{
+	font-size: 1.2em;
+  height:   33px;
+	cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+}
+#k{
+	color: #fed189  !important;
+}
+
+#v{
+	color: #00a0df !important;
+}
+
+#cuenta{
+  right: 0px;
+  position: absolute;
+}
+
+/*ICONO FLECHA ABAJO*/
+nav a span{
+	margin-left: 10px;
+}
+
+
+nav ul{
+
+  font-family: 'Catamaran', sans-serif;
+	list-style: none;
+	padding: 0;
+	display: flex;
+	margin: 0;
+  height: auto;
+}
+
+nav a:hover{
+  background-color: #274054;
+  color:  #fff;
+}
+
+nav a:link{
+	text-decoration: none;
+}
+
+nav  a{
+	color: #fff;
+	display: block;
+	padding: 0 1.1em;
+  height: 33px;
+  line-height: 30px;
+
+}
+
+
+nav li{
+	line-height: 3px;
+	position: relative;
+  z-index: 1;
+  }
+
+nav li ul{
+    position: absolute;
+}
+
+nav li ul{
+	display: none;
+}
+
+
+/* PRIMER NIVEL
+ */
+
+nav{
+  width: 100%;
+}
+
+nav> ul{
+  width: 100%;
+  background-color: #1b2d3b;
+}
+
+nav > ul > li{
+  float: left;
+}
+
+/* 
+SEGUNDO NIVEL */
+  nav li li{
+      background-color: #1b2d3b;width: 200px;
+  }
+
+  nav > ul > li > ul > li{
+    top: 100%;
+    width: auto;
+  }
+
+
+/*  TERCER NIVEL */
+
+  nav ul ul ul{
+    left: 100%;  
+    top: 0;
+    width: 100%;width: 200px;
+  }
+
+
+
+@media (max-width: 768px){
+
+    #abrir-menu{
+      display: none;
+      transition-duration: .8s;
+    }
+
+    #cuenta{
+      position: relative;
+    }
+
+    #abrir-menu:checked ~ .menu> ul{
+      display: block;
+    }
+
+    #abrir-menu:checked ~ #btn-menu{
+      transform: rotate(180deg);
+        transition-duration: .8s;
+    }
+  
+
+    #btn-menu{
+      transition-duration: .5s;
+      font-size: 2em;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .logo{
+        width: 100%;
+        line-height: 30px;
+        display: flex;
+        justify-content: center;
+    }
+  
+    .header{
+        height: 20px;
+    }
+
+      /*  PRIMER NIVEL */
+        nav ul{
+          display: none;
+          }
+
+        nav ul li{
+          width: 100%;
+          background-color: #1b2d3b;
+        }
+
+      /*  SEGUNDO NIVEL */
+
+      nav > ul > li > ul > li{
+        top: 100%;
+        width: 100%;
+      }
+
+      nav ul ul{
+        display: none;
+        position: sticky;      
+      }
+
+      nav > ul > li > ul{
+         width: 100%;
+      }
+
+      nav ul ul li{
+
+          width: 100%;
+        background-color: #0c141b;
+      }
+
+      /*TERCER NIVEL*/
+
+      nav ul ul ul{
+        display: none;
+      }
+
+
+
+} 

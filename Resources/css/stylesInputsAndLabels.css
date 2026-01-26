@@ -1,0 +1,112 @@
+@media (min-width: 900px){
+	.label{
+		width: 15%;
+		margin-left: 40px;
+	}
+
+	.input{
+		width: 8%;
+	}
+
+	.label2{
+		width: 15%;
+		margin-left: 40px;
+	}
+
+	.input2{
+		width: 8%;
+	}
+
+	.label3{
+		width: 7%;
+		margin-left: 40px;
+	}
+
+	.input3{
+		width: 5%;
+	}
+}
+
+@media (min-width: 700px){
+	.label{
+		width: 15%;
+		margin-left: 40px;
+	}
+
+	.input{
+		width: 70%;
+	}
+	.label2{
+		width: 8%;
+		margin-left: 40px;
+	}
+
+	.input2{
+		width: 40%;
+	}
+	.label3{
+		width: 5%;
+		margin-left: 40px;
+	}
+
+	.input3{
+		width: 30%;
+	}
+}
+@media (min-width: 470px){
+	.label{
+		width: 30%;
+		margin-left: 40px;
+	}
+
+	.input{
+		width: 60%;
+	}
+	.label2{
+		width: 15%;
+		margin-left: 40px;
+	}
+
+	.input2{
+		width: 28%;
+	}
+	.label3{
+		width: 9%;
+		margin-left: 40px;
+	}
+
+	.input3{
+		width: 18.5%;
+	}
+
+}
+
+@media (max-width: 470px){
+	.label{
+		width: 100%;
+		margin-left: 25px;
+	}
+
+	.input{
+		width: 90%;
+		margin-left: 25px;
+	}
+	.label2{
+		width: 100%;
+		margin-left: 25px;
+	}
+
+	.input2{
+		width: 90%;
+		margin-left: 25px;
+	}
+	.label3{
+		width: 100%;
+		margin-left: 25px;
+	}
+
+	.input3{
+		width: 90%;
+		margin-left: 25px;
+	}
+}

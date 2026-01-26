@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    
+    height: 100vh;
+}
+
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 98%;
+    max-width: 1000px; /* Ancho máximo del contenedor */
+    padding: 5px; /* Agrega espacio alrededor del contenido */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    z-index: 999; /* Asegura que el contenedor esté sobre otros elementos */
+
+}
+
+
+.formulario {
+    width: 55%; /* Ancho de la columna del formulario */
+}
+
+.introduccion {
+    width: 43%; /* Ancho de la columna de la introducción */
+    text-align: justify;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+    height: 35px;
+    align-items: center;
+    font-size: 13px;
+}
+
+
+.abono1 {
+    display: flex;
+    margin-bottom: 15px;
+    height: 30px;
+    width: 280px;
+    padding: 10px;
+    font-size: 13px;
+    padding-left: 30px;
+    
+    
+}
+.fechapago {
+    display: flex;
+    margin-bottom: 15px;
+    height: 30px;
+    width: 280px auto;
+    padding: 13px;
+    font-size: 13px;
+   
+    
+}
+
+select {
+    width: 280px; /* Ancho deseado */
+    height: 30px;
+    margin: 10px;
+    
+}
+option {
+    padding: 15px; /* Espaciado interno */
+}
+
+.input-group input {
+    width: calc(70% - 10px); /* Ancho de cada campo de entrada */
+    padding: 10px;
+    margin-right: 10px;
+}
+
+input[type="file"] {
+    width: 80%;
+    padding: 3px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}
+
+
+
+.input-group0 {
+display: flex;
+flex-wrap: wrap;
+padding: 5px;
+margin-bottom: 15px;
+
+}
+
+
+
+.custom-input {
+    width: 300px; /* Ancho deseado */
+    height: 5%; /* Alto deseado */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Para incluir el padding y el border en el tamaño total */
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 1000px) {
+    
+    .container {
+        width: 95%;
+        align-items: center; /* Centra los elementos del formulario en dispositivos móviles */
+        
+    }
+    .top-bar {
+        
+        overflow-x: hidden;
+    }
+   
+    .formulario {
+        width: 95%; /* Ancho de la columna del formulario */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    .introduccion {
+        width:95%; /* Ancho de la columna de la introducción */
+        text-align: justify;
+        flex-direction:column;
+        margin: 15px;
+    }
+   
+        
+
+    
+    .form-group button {
+        width: 100%; /* Ajusta el ancho del botón al 100% en dispositivos móviles */
+    }
+
+
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding-top: 50px;
+        }
+        
+        .success-message {
+            color: green;
+            font-size: 24px;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 24px;
+        }
+}
