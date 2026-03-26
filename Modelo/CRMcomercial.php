@@ -33,24 +33,44 @@ class CRMComercial
             perfil_id INT NOT NULL,
             creado_en DATETIME NOT NULL,
             actualizado_en DATETIME DEFAULT NULL,
+            actualizado_por_id INT DEFAULT NULL,
+            actualizado_por VARCHAR(180) DEFAULT NULL,
             INDEX idx_perfil_id (perfil_id),
             INDEX idx_responsable_id (responsable_id),
             INDEX idx_estado (estado),
             INDEX idx_fecha_ingreso (fecha_ingreso)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 
-        return $this->con->exec($sql) !== false;
+        $ok = $this->con->exec($sql) !== false;
+
+        if ($ok) {
+            $this->asegurarColumnasActualizacion();
+        }
+
+        return $ok;
     }
 
-    public function listar($perfil_id, $base_principal = false)
+    private function asegurarColumnasActualizacion()
+    {
+        $columnas = [];
+        $sql = $this->con->query("SHOW COLUMNS FROM crm_comercial");
+        while ($fila = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $columnas[] = $fila['Field'];
+        }
+
+        if (!in_array('actualizado_por_id', $columnas, true)) {
+            $this->con->exec("ALTER TABLE crm_comercial ADD COLUMN actualizado_por_id INT DEFAULT NULL AFTER actualizado_en");
+        }
+
+        if (!in_array('actualizado_por', $columnas, true)) {
+            $this->con->exec("ALTER TABLE crm_comercial ADD COLUMN actualizado_por VARCHAR(180) DEFAULT NULL AFTER actualizado_por_id");
+        }
+    }
+
+    public function listar()
     {
         $listar = [];
-        if ($base_principal) {
-            $sql = $this->con->prepare("SELECT * FROM crm_comercial ORDER BY id DESC");
-        } else {
-            $sql = $this->con->prepare("SELECT * FROM crm_comercial WHERE perfil_id = ? ORDER BY id DESC");
-            $sql->bindParam(1, $perfil_id);
-        }
+        $sql = $this->con->prepare("SELECT * FROM crm_comercial ORDER BY id DESC");
         $sql->execute();
 
         while ($fila = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -77,7 +97,9 @@ class CRMComercial
                 ultimo_contacto = ?,
                 responsable = ?,
                 observaciones = ?,
-                actualizado_en = ?
+                actualizado_en = ?,
+                actualizado_por_id = ?,
+                actualizado_por = ?
                 WHERE id = ?");
 
             $ok = $sql->execute([
@@ -95,6 +117,8 @@ class CRMComercial
                 $data['responsable'],
                 $data['observaciones'],
                 date('Y-m-d H:i:s'),
+                $data['actualizado_por_id'],
+                $data['actualizado_por'],
                 $data['id']
             ]);
 
@@ -128,65 +152,16 @@ class CRMComercial
         return $ok ? $this->con->lastInsertId() : 0;
     }
 
-    public function cambiarEstado($id, $perfil_id)
+    public function cambiarEstado($id, $actualizadoPorId, $actualizadoPor)
     {
         $sql = $this->con->prepare("UPDATE crm_comercial
             SET estado = CASE WHEN estado='ACTIVO' THEN 'INACTIVO' ELSE 'ACTIVO' END,
-                actualizado_en = ?
-            WHERE id = ? AND perfil_id = ?");
+                actualizado_en = ?,
+                actualizado_por_id = ?,
+                actualizado_por = ?
+            WHERE id = ?");
 
-        return $sql->execute([date('Y-m-d H:i:s'), $id, $perfil_id]);
+        return $sql->execute([date('Y-m-d H:i:s'), $actualizadoPorId, $actualizadoPor, $id]);
     }
 
-    public function reporte($filtros)
-    {
-        $where = [];
-        $params = [];
-
-        if (!empty($filtros['responsable'])) {
-            $where[] = "responsable LIKE ?";
-            $params[] = '%' . $filtros['responsable'] . '%';
-        }
-
-        if (!empty($filtros['estado_venta'])) {
-            $where[] = "estado_venta = ?";
-            $params[] = $filtros['estado_venta'];
-        }
-
-        if (!empty($filtros['semaforo'])) {
-            if ($filtros['semaforo'] == 'rojo') {
-                $where[] = "status_porcentaje < 50";
-            } elseif ($filtros['semaforo'] == 'naranja') {
-                $where[] = "status_porcentaje BETWEEN 50 AND 79";
-            } elseif ($filtros['semaforo'] == 'verde') {
-                $where[] = "status_porcentaje >= 80";
-            }
-        }
-
-        if (!empty($filtros['fecha_inicio'])) {
-            $where[] = "fecha_ingreso >= ?";
-            $params[] = $filtros['fecha_inicio'];
-        }
-
-        if (!empty($filtros['fecha_fin'])) {
-            $where[] = "fecha_ingreso <= ?";
-            $params[] = $filtros['fecha_fin'];
-        }
-
-        $sqlTxt = "SELECT * FROM crm_comercial";
-        if (count($where) > 0) {
-            $sqlTxt .= " WHERE " . implode(' AND ', $where);
-        }
-        $sqlTxt .= " ORDER BY id DESC";
-
-        $sql = $this->con->prepare($sqlTxt);
-        $sql->execute($params);
-
-        $listar = [];
-        while ($fila = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $listar[] = $fila;
-        }
-
-        return $listar;
-    }
 }
