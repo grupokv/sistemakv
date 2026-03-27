@@ -255,7 +255,7 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
                 <div><span class="dot dot-naranja"></span> En negociación: <b id="labelVentaNegociacion">0%</b></div>
                 <div><span class="dot dot-verde"></span> Ganado: <b id="labelVentaGanado">0%</b></div>
                 <div><span class="dot dot-rojo"></span> Perdido: <b id="labelVentaPerdido">0%</b></div>
-                <div><span class="dot dot-azul"></span> Finalizaion contrato: <b id="labelVentaFinalizacion">0%</b></div>
+                <div><span class="dot dot-azul"></span> Finalización contrato: <b id="labelVentaFinalizacion">0%</b></div>
               </div>
             </div>
           </div>
