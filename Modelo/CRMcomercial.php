@@ -87,6 +87,7 @@ class CRMComercial
                 nombre = ?,
                 empresa = ?,
                 estado_venta = ?,
+                estado = ?,
                 tipo_cliente = ?,
                 status_porcentaje = ?,
                 telefono = ?,
@@ -106,6 +107,7 @@ class CRMComercial
                 $data['nombre'],
                 $data['empresa'],
                 $data['estado_venta'],
+                $data['estado'],
                 $data['tipo_cliente'],
                 $data['status_porcentaje'],
                 $data['telefono'],
@@ -127,7 +129,7 @@ class CRMComercial
 
         $sql = $this->con->prepare("INSERT INTO crm_comercial
             (fecha_ingreso, nombre, empresa, estado_venta, tipo_cliente, status_porcentaje, telefono, correo, ciudad, estado, fecha_seguimiento, valor_potencial, ultimo_contacto, responsable, observaciones, responsable_id, perfil_id, creado_en)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACTIVO', ?, ?, ?, ?, ?, ?, ?, ?)");
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $ok = $sql->execute([
             date('Y-m-d'),
@@ -139,6 +141,7 @@ class CRMComercial
             $data['telefono'],
             $data['correo'],
             $data['ciudad'],
+            $data['estado'],
             $data['fecha_seguimiento'],
             $data['valor_potencial'],
             $data['ultimo_contacto'],
