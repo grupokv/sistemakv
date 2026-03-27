@@ -143,6 +143,24 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
       vertical-align: middle;
       white-space: nowrap;
     }
+    #tablaCRM th,
+    #tablaCRM td,
+    .dataTables_scrollHead table th,
+    .dataTables_scrollBody table td {
+      box-sizing: border-box;
+    }
+    #tablaCRM th:nth-child(2),
+    #tablaCRM td:nth-child(2),
+    .dataTables_scrollHead table th:nth-child(2),
+    .dataTables_scrollBody table td:nth-child(2) {
+      width: 95px;
+      min-width: 95px;
+      max-width: 95px;
+      text-align: center;
+      white-space: nowrap;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
 
     .dataTables_wrapper .dataTables_scrollBody {
       overflow-x: auto !important;
@@ -178,6 +196,8 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
     .dot-rojo { background: #d9534f; }
     .dot-naranja { background: #f0ad4e; }
     .dot-verde { background: #5cb85c; }
+    .dot-morado { background: #7e57c2; }
+    .dot-azul { background: #5bc0de; }
 
     .modal input, .modal select, .modal textarea { text-transform: none !important; font-size: 12px; }
     .modal .modal-title,
@@ -205,7 +225,7 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
 
   <section class="home_content">
     <div class="notice notice-warning">
-      <strong>Bienvenid@ <?php echo htmlspecialchars(crmToString($nombreUsuario), ENT_QUOTES, 'UTF-8'); ?></strong> al sistemakv - Crm Comercial.
+      <strong>Bienvenid@ <?php echo htmlspecialchars(crmToString($nombreUsuario), ENT_QUOTES, 'UTF-8'); ?></strong> al sistemakv - desde aqui podra administrar las opciones segun su perfil.
     </div>
 
     <div class="crm-panel">
@@ -216,28 +236,41 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
 
         <div class="crm-metrics">
           <div class="metric-box">
-            Status promedio
+            Estatus
             <div class="metric-flex">
               <div class="donut" id="donutStatus"></div>
               <div style="font-size:11px;">
-                <div><span class="dot dot-rojo"></span> Frio: <b id="labelRojo">0%</b></div>
-                <div><span class="dot dot-naranja"></span> Medio: <b id="labelNaranja">0%</b></div>
-                <div><span class="dot dot-verde"></span> Caliente: <b id="labelVerde">0%</b></div>
+                <div><span class="dot dot-rojo"></span> Rojo: <b id="labelRojo">0</b></div>
+                <div><span class="dot dot-naranja"></span> Amarillo: <b id="labelNaranja">0</b></div>
+                <div><span class="dot dot-verde"></span> Verde: <b id="labelVerde">0</b></div>
               </div>
             </div>
           </div>
           <div class="metric-box">
-            Activos vs Inactivos
+            Estado de la venta
+            <div class="metric-flex">
+              <div class="donut" id="donutVenta"></div>
+              <div style="font-size:11px;">
+                <div><span class="dot dot-morado"></span> Prospecto: <b id="labelVentaProspecto">0%</b></div>
+                <div><span class="dot dot-naranja"></span> En negociación: <b id="labelVentaNegociacion">0%</b></div>
+                <div><span class="dot dot-verde"></span> Ganado: <b id="labelVentaGanado">0%</b></div>
+                <div><span class="dot dot-rojo"></span> Perdido: <b id="labelVentaPerdido">0%</b></div>
+                <div><span class="dot dot-azul"></span> Finalizaion contrato: <b id="labelVentaFinalizacion">0%</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="metric-box">
+            Estado Cliente
             <div class="metric-flex">
               <div class="donut" id="donutEstado"></div>
               <div style="font-size:11px;">
-                <div>Activos: <b id="labelActivos">0</b></div>
-                <div>Inactivos: <b id="labelInactivos">0</b></div>
+                <div><span class="dot dot-verde"></span> Activos: <b id="labelActivos">0</b></div>
+                <div><span class="dot dot-rojo"></span> Inactivos: <b id="labelInactivos">0</b></div>
               </div>
             </div>
           </div>
           <div class="metric-box">
-            Total datos agregados
+            Total de datos agregados
             <strong id="metricTotal">0</strong>
           </div>
         </div>
@@ -255,11 +288,11 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
             <th>EMPRESA</th>
             <th>ESTADO DE VENTA</th>
             <th>TIPO CLIENTE</th>
-            <th>STATUS</th>
+            <th>ESTATUS</th>
             <th>TELEFONO</th>
             <th>CORREO</th>
             <th>CIUDAD</th>
-            <th>ESTADO</th>
+            <th>ESTADO CLIENTE</th>
             <th>FECHA SEGUIMIENTO</th>
             <th>VALOR POTENCIAL</th>
             <th>ULTIMO CONTACTO</th>
@@ -291,21 +324,11 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
                 <select class="form-control" id="estadoVenta" required>
                   <option value="">Seleccione</option>
                   <option>Prospecto</option>
-                  <option>Contactado</option>
-                  <option>Calificado</option>
-                  <option>En proceso</option>
-                  <option>Cotización enviada</option>
                   <option>En negociación</option>
-                  <option>Cierre</option>
-                  <option>Cerrado (Ganado)</option>
-                  <option>Cerrado (Perdido)</option>
-                  <option>Pospuesto</option>
-                  <option value="__OTRO__">Otro</option>
+                  <option>Ganado</option>
+                  <option>Perdido</option>
+                  <option>Finalizaion contrato</option>
                 </select>
-              </div>
-              <div class="col-md-4 form-group" id="estadoVentaOtroWrap" style="display:none;">
-                <label>Otro estado de venta</label>
-                <input type="text" class="form-control" id="estadoVentaOtro" placeholder="Escriba el estado de venta">
               </div>
               <div class="col-md-4 form-group"><label>Tipo cliente</label>
                 <select class="form-control" id="tipoCliente" required>
@@ -319,13 +342,13 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
                   <option>Para Afiliar</option>
                 </select>
               </div>
-              <div class="col-md-4 form-group"><label>Status (%)</label><input type="number" min="0" max="100" class="form-control" id="status" required></div>
+              <div class="col-md-4 form-group"><label>Status (%)</label><input type="number" min="0" max="100" class="form-control" id="status" readonly></div>
 
               <div class="col-md-4 form-group"><label>Telefono</label><input type="text" class="form-control" id="telefono"></div>
               <div class="col-md-4 form-group"><label>Correo</label><input type="email" class="form-control" id="correo"></div>
               <div class="col-md-4 form-group"><label>Ciudad</label><input type="text" class="form-control" id="ciudad"></div>
 
-              <div class="col-md-4 form-group"><label>Estado</label><input type="text" class="form-control" value="ACTIVO" disabled></div>
+              <div class="col-md-4 form-group"><label>Estado</label><input type="text" class="form-control" id="estadoRegistro" value="INACTIVO" readonly></div>
               <div class="col-md-4 form-group"><label>Fecha seguimiento</label><input type="date" class="form-control" id="fechaSeguimiento"></div>
               <div class="col-md-4 form-group"><label>Valor potencial</label><input type="number" min="0" class="form-control" id="valorPotencial"></div>
 
@@ -365,7 +388,6 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
           tbody.empty();
 
           data.forEach(item => {
-            const candado = item.estado === 'ACTIVO' ? 'fa-lock' : 'fa-unlock-alt';
             const badge = item.estado === 'ACTIVO'
               ? '<span class="label label-success">ACTIVO</span>'
               : '<span class="label label-danger">INACTIVO</span>';
@@ -375,7 +397,6 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
                 <td>${item.id}</td>
                 <td>
                   <button class="btn btn-xs btn-primary btnEditar" data-id="${item.id}"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-xs btn-lock btnEstado" data-id="${item.id}"><i class="fa ${candado}"></i></button>
                 </td>
                 <td>${item.fecha_ingreso || ''}</td>
                 <td>${item.nombre || ''}</td>
@@ -404,6 +425,9 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
             scrollX: true,
             scrollCollapse: true,
             autoWidth: false,
+            columnDefs: [
+              { targets: 1, width: '95px', className: 'text-center' }
+            ],
             language: {
               search: 'Buscar:',
               lengthMenu: 'Mostrar _MENU_ registros',
@@ -412,6 +436,7 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
               emptyTable: 'No hay datos CRM cargados'
             }
           });
+          tabla.columns.adjust();
 
           renderMetricas(data);
         });
@@ -432,9 +457,34 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
 
         $('#donutStatus').css('background',
           `conic-gradient(#d9534f 0deg, #d9534f ${degRojo}deg, #f0ad4e ${degRojo}deg, #f0ad4e ${degNaranja}deg, #5cb85c ${degNaranja}deg, #5cb85c 360deg)`);
-        $('#labelRojo').text(`${pRojo.toFixed(1)}%`);
-        $('#labelNaranja').text(`${pNaranja.toFixed(1)}%`);
-        $('#labelVerde').text(`${pVerde.toFixed(1)}%`);
+        $('#labelRojo').text(rojos);
+        $('#labelNaranja').text(naranjas);
+        $('#labelVerde').text(verdes);
+
+        const ventaProspecto = data.filter(r => r.estado_venta === 'Prospecto').length;
+        const ventaNegociacion = data.filter(r => r.estado_venta === 'En negociación').length;
+        const ventaGanado = data.filter(r => r.estado_venta === 'Ganado').length;
+        const ventaPerdido = data.filter(r => r.estado_venta === 'Perdido').length;
+        const ventaFinalizacion = data.filter(r => r.estado_venta === 'Finalizaion contrato').length;
+
+        const pVentaProspecto = total ? (ventaProspecto / total) * 100 : 0;
+        const pVentaNegociacion = total ? (ventaNegociacion / total) * 100 : 0;
+        const pVentaGanado = total ? (ventaGanado / total) * 100 : 0;
+        const pVentaPerdido = total ? (ventaPerdido / total) * 100 : 0;
+        const pVentaFinalizacion = total ? (ventaFinalizacion / total) * 100 : 0;
+
+        const deg1 = (pVentaProspecto / 100) * 360;
+        const deg2 = deg1 + (pVentaNegociacion / 100) * 360;
+        const deg3 = deg2 + (pVentaGanado / 100) * 360;
+        const deg4 = deg3 + (pVentaPerdido / 100) * 360;
+
+        $('#donutVenta').css('background',
+          `conic-gradient(#7e57c2 0deg, #7e57c2 ${deg1}deg, #f0ad4e ${deg1}deg, #f0ad4e ${deg2}deg, #5cb85c ${deg2}deg, #5cb85c ${deg3}deg, #d9534f ${deg3}deg, #d9534f ${deg4}deg, #5bc0de ${deg4}deg, #5bc0de 360deg)`);
+        $('#labelVentaProspecto').text(`${pVentaProspecto.toFixed(1)}%`);
+        $('#labelVentaNegociacion').text(`${pVentaNegociacion.toFixed(1)}%`);
+        $('#labelVentaGanado').text(`${pVentaGanado.toFixed(1)}%`);
+        $('#labelVentaPerdido').text(`${pVentaPerdido.toFixed(1)}%`);
+        $('#labelVentaFinalizacion').text(`${pVentaFinalizacion.toFixed(1)}%`);
 
         const activos = data.filter(r => r.estado === 'ACTIVO').length;
         const inactivos = total - activos;
@@ -447,13 +497,24 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
         $('#labelInactivos').text(inactivos);
       }
 
-      function toggleEstadoVentaOtro() {
-        const esOtro = $('#estadoVenta').val() === '__OTRO__';
-        $('#estadoVentaOtroWrap').toggle(esOtro);
-        $('#estadoVentaOtro').prop('required', esOtro);
-        if (!esOtro) {
-          $('#estadoVentaOtro').val('');
+      function aplicarReglaEstadoVenta() {
+        const estadoVenta = $('#estadoVenta').val();
+        const reglas = {
+          'Prospecto': { estado: 'INACTIVO', status: 20 },
+          'En negociación': { estado: 'INACTIVO', status: 50 },
+          'Ganado': { estado: 'ACTIVO', status: 100 },
+          'Perdido': { estado: 'INACTIVO', status: 0 },
+          'Finalizaion contrato': { estado: 'INACTIVO', status: 0 }
+        };
+
+        if (reglas[estadoVenta]) {
+          $('#estadoRegistro').val(reglas[estadoVenta].estado);
+          $('#status').val(reglas[estadoVenta].status);
+          return;
         }
+
+        $('#estadoRegistro').val('INACTIVO');
+        $('#status').val('');
       }
 
       function abrirNuevo() {
@@ -462,7 +523,8 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
         $('#registroId').val('');
         $('#fechaIngreso').val(new Date().toISOString().split('T')[0]);
         $('#responsable').val(<?php echo json_encode(crmToString($nombreUsuario)); ?>);
-        toggleEstadoVentaOtro();
+        $('#estadoRegistro').val('INACTIVO');
+        aplicarReglaEstadoVenta();
         $('#modalRegistro').modal('show');
       }
 
@@ -476,18 +538,8 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
           $('#fechaIngreso').val(item.fecha_ingreso);
           $('#nombre').val(item.nombre);
           $('#empresa').val(item.empresa);
-          const opcionesEstadoVenta = [
-            'Prospecto', 'Contactado', 'Calificado', 'En proceso', 'Cotización enviada',
-            'En negociación', 'Cierre', 'Cerrado (Ganado)', 'Cerrado (Perdido)', 'Pospuesto'
-          ];
-          if (opcionesEstadoVenta.indexOf(item.estado_venta) >= 0) {
-            $('#estadoVenta').val(item.estado_venta);
-            $('#estadoVentaOtro').val('');
-          } else {
-            $('#estadoVenta').val('__OTRO__');
-            $('#estadoVentaOtro').val(item.estado_venta || '');
-          }
-          toggleEstadoVentaOtro();
+          $('#estadoVenta').val(item.estado_venta);
+          $('#estadoRegistro').val(item.estado || 'INACTIVO');
           $('#tipoCliente').val(item.tipo_cliente);
           $('#status').val(item.status_porcentaje);
           $('#telefono').val(item.telefono);
@@ -508,11 +560,7 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
           return;
         }
 
-        const estadoVentaSeleccionado = $('#estadoVenta').val();
-        const estadoVentaFinal = estadoVentaSeleccionado === '__OTRO__'
-          ? $('#estadoVentaOtro').val().trim()
-          : estadoVentaSeleccionado;
-
+        const estadoVentaFinal = $('#estadoVenta').val();
         if (!estadoVentaFinal) {
           alertify.error('Debe indicar el estado de venta.');
           return;
@@ -547,24 +595,16 @@ $nombreUsuario = ucfirst(mb_strtolower(crmToString($nombreUsuarioRaw)));
         });
       }
 
-      function cambiarEstado(id) {
-        $.post(apiUrl, { accion: 'cambiar_estado', id }, function (resp) {
-          let r = resp;
-          if (typeof resp === 'string') r = JSON.parse(resp);
-          if (!r.ok) {
-            alertify.warning('No se pudo cambiar el estado del registro.');
-            return;
-          }
-          window.location.reload();
-        });
-      }
-
       $('#btnAgregar').on('click', abrirNuevo);
-      $('#estadoVenta').on('change', toggleEstadoVentaOtro);
+      $('#estadoVenta').on('change', aplicarReglaEstadoVenta);
 
       $('#guardarRegistro').on('click', guardar);
       $(document).on('click', '.btnEditar', function () { editarRegistro($(this).data('id')); });
-      $(document).on('click', '.btnEstado', function () { cambiarEstado($(this).data('id')); });
+      $(window).on('resize', function () {
+        if (tabla) {
+          tabla.columns.adjust();
+        }
+      });
 
       cargarTabla();
     })();
